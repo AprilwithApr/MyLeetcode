@@ -1,4 +1,4 @@
-package com.myleetcode;
+package code.my.leetcode;
 
 /**
  * @author :qiuyongfeng
@@ -8,7 +8,7 @@ package com.myleetcode;
 public class TwoSum {
 
     public static void main(String[] args) {
-
+        System.out.println(111);
     }
 
     public int[] twoSum(int[] nums, int target) {
