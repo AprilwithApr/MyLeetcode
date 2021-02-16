@@ -1,4 +1,4 @@
-package code.my.leetcode;
+package code.my.leetcode.simple;
 
 import java.util.HashMap;
 import java.util.Map;
