@@ -19,6 +19,24 @@ public class LongestSubstring {
         System.out.println(lengthOfLongestSubstringV2("aabaab!bb"));
     }
 
+    //滑动窗口
+    public static int lengthOfLongestSubstringV2(String s) {
+        if (s.length() == 0) return 0;
+        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+        int max = 0;
+        //窗口左指针
+        int left = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (map.containsKey(s.charAt(i))) {
+                left = Math.max(left, map.get(s.charAt(i)) + 1);
+            }
+            map.put(s.charAt(i), i);
+            max = Math.max(max, i - left + 1);
+        }
+        return max;
+    }
+
+    //my answer
     public static int lengthOfLongestSubstring(String s) {
         ArrayDeque<Character> q = new ArrayDeque<>();
         int max = 0;
@@ -36,22 +54,5 @@ public class LongestSubstring {
             }
         }
         return max > q.size() ? max : q.size();
-    }
-
-    //滑动窗口
-    public static int lengthOfLongestSubstringV2(String s) {
-        if (s.length() == 0) return 0;
-        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
-        int max = 0;
-        //窗口左指针
-        int left = 0;
-        for (int i = 0; i < s.length(); i++) {
-            if (map.containsKey(s.charAt(i))) {
-                left = Math.max(left, map.get(s.charAt(i)) + 1);
-            }
-            map.put(s.charAt(i), i);
-            max = Math.max(max, i - left + 1);
-        }
-        return max;
     }
 }
