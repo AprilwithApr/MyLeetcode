@@ -1,1 +1,1 @@
-my leetcode record
+log for learning
