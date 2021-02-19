@@ -7,12 +7,20 @@ package code.my.leetcode.simple;
  **/
 public class GreatestCommonDivisor {
     public static void main(String[] args) {
-        System.out.println(gcd(4, 18));
+        System.out.println(gcd(20, 48));
+        System.out.println(gcd2(20, 48));
     }
 
     private static int gcd(int p, int q) {
         if (q == 0) return p;
-        int r = p % q;
-        return gcd(q, r);
+        return gcd(q, p % q);
+    }
+
+    private static int gcd2(int p, int q) {
+        if (p == 0) return q;
+        if (q == 0) return p;
+        if (p > q) return gcd2(q, p % q);
+        if (p < q) return gcd2(p, q % p);
+        return 1;
     }
 }
