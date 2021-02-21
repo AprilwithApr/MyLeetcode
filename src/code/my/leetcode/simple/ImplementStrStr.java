@@ -13,25 +13,14 @@ public class ImplementStrStr {
     public static void main(String[] args) {
         System.out.println(strStr("mississippi", "issip"));
     }
-
+    //KMP
     static int strStr(String haystack, String needle) {
-        if (needle.equals("")) return 0;
-        int hl = haystack.length();
-        int nl = needle.length();
-        if (hl < nl) return -1;
-        int i = 0, j = 0;
-        while (i < hl) {
-            if (haystack.charAt(i) != needle.charAt(j)) {
-                i++;
-                j = 0;
-            } else {
-                if (j == nl - 1) {
-                    return i - j;
-                }
-                i++;
-                j++;
-            }
-        }
+
         return -1;
+    }
+
+    static int[] nextArr(String str){
+
+        return null;
     }
 }
