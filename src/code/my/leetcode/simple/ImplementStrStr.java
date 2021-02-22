@@ -11,16 +11,36 @@ package code.my.leetcode.simple;
  */
 public class ImplementStrStr {
     public static void main(String[] args) {
-        System.out.println(strStr("mississippi", "issip"));
+        System.out.println(strStr("abababcca","abc"));
+
+        int[] next = calNext("abababcca");
+        for (int i = 0; i < next.length; i++) {
+            System.out.printf("%d\t",next[i]);
+        }
     }
+
     //KMP
     static int strStr(String haystack, String needle) {
 
         return -1;
     }
 
-    static int[] nextArr(String str){
-
-        return null;
+    static int[] calNext(String str) {
+        int[] next = new int[str.length()];
+        next[0] = 0;
+        for (int i = 1; i < str.length(); i++) {
+            int j = 0;
+            int k = i - 1;
+            while (j < i){
+                if (str.charAt(j) == str.charAt(k)){
+                    j++;
+                    k--;
+                }else {
+                    next[i] = k;
+                    break;
+                }
+            }
+        }
+        return next;
     }
 }
