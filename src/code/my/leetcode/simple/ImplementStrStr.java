@@ -11,9 +11,9 @@ package code.my.leetcode.simple;
  */
 public class ImplementStrStr {
     public static void main(String[] args) {
-        int i1 = strStr("abababca", "ab");
+        int i1 = strStr("ababaab", "aab");
         System.out.println(i1);
-        int[] next = calNext("abababca");
+        int[] next = calNext("ababaab");
         for (int i = 0; i < next.length; i++) {
             System.out.printf("%d\t", next[i]);
         }
