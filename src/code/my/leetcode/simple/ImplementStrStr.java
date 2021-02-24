@@ -11,9 +11,9 @@ package code.my.leetcode.simple;
  */
 public class ImplementStrStr {
     public static void main(String[] args) {
-        int i1 = strStr("hello", "ll");
+        int i1 = strStr("abababca", "ab");
         System.out.println(i1);
-        int[] next = calNext("mississippi");
+        int[] next = calNext("abababca");
         for (int i = 0; i < next.length; i++) {
             System.out.printf("%d\t", next[i]);
         }
@@ -32,11 +32,11 @@ public class ImplementStrStr {
         while (i < hl && j < nl) {
             if (haystack.charAt(i) != needle.charAt(j)) {
                 j = next[j];
-                if (j == -1){
+                if (j == -1) {
                     i++;
                     j = 0;
                 }
-            }else{
+            } else {
                 i++;
                 j++;
             }
