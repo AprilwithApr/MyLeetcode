@@ -20,7 +20,7 @@ package code.my.leetcode.simple;
  **/
 public class CountAndSay {
     public static void main(String[] args) {
-        System.out.println(countAndSay(3));
+        System.out.println(countAndSay(6));
     }
 
     public static String countAndSay(int n) {
@@ -35,12 +35,11 @@ public class CountAndSay {
             if (s.charAt(p) == s.charAt(k)){
                 k++;
                 if (k == s.length()){
-                    res += (k - p) + "" + s.charAt(k);
+                    res += (k - p) + "" + s.charAt(p);
                     break;
-                }
+            }
             }else{
-                res += (k - p) + "" + s.charAt(k);
-                k++;
+                res += (k - p) + "" + s.charAt(p);
                 p = k;
             }
         }
