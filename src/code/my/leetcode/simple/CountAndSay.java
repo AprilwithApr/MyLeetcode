@@ -27,18 +27,18 @@ public class CountAndSay {
 
         if (n == 1) return "1";
 
-        String s = countAndSay(n -1);
+        String s = countAndSay(n - 1);
         String res = "";
         int p = 0;
         int k = 0;
-        while (p < s.length()){
-            if (s.charAt(p) == s.charAt(k)){
+        while (p < s.length()) {
+            if (s.charAt(p) == s.charAt(k)) {
                 k++;
-                if (k == s.length()){
+                if (k == s.length()) {
                     res += (k - p) + "" + s.charAt(p);
                     break;
-            }
-            }else{
+                }
+            } else {
                 res += (k - p) + "" + s.charAt(p);
                 p = k;
             }
