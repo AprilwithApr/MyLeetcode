@@ -10,19 +10,22 @@ public class LengthOfLastWord {
         System.out.println(lengthOfLastWord("a "));
         System.out.println(lengthOfLastWord("        "));
         System.out.println(lengthOfLastWord(" a "));
+        System.out.println(lengthOfLastWord("hello world "));
     }
 
-    public static int lengthOfLastWord(String s) {
-        if (s.length() == 1 && s.charAt(0) != ' ') return 1;
-        boolean sign = false;
-        for (int i = s.length() - 1; i >= 0; i--) {
-            if (s.charAt(i) != ' ') {
-                sign = true;
+    //my answer
+    static int lengthOfLastWord(String s) {
+        int res = 0;
+        int p = s.length() - 1;
+        while (p < s.length() && p > -1) {
+            if (s.charAt(p) != ' ') {
+                res++;
+                if (p > 0) {
+                    if (s.charAt(p - 1) == ' ') return res;
+                }
             }
-            if ((s.charAt(i) == ' ' || i == 0) && sign) {
-                return s.length() - 1 - i;
-            }
+            p--;
         }
-        return 0;
+        return res;
     }
 }
