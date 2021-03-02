@@ -11,14 +11,26 @@ import java.util.HashSet;
  **/
 public class RemoveDuplicatesFromSortedList {
     public static void main(String[] args) {
-        ListNode node = new ListNode(1, new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(3)))));
-        ListNode deleteDuplicates = deleteDuplicates(node);
+        ListNode node = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(3, new ListNode(3)))));
+//        ListNode deleteDuplicates = deleteDuplicates(node);
+        ListNode deleteDuplicates = deleteDuplicates2(node);
 
-        ListNode ln = new ListNode(0,deleteDuplicates);
-        while (ln.next != null){
-            System.out.println(ln.next.val);
-            ln = ln.next;
+        while (deleteDuplicates != null) {
+            System.out.println(deleteDuplicates.val);
+            deleteDuplicates = deleteDuplicates.next;
         }
+    }
+
+    public static ListNode deleteDuplicates2(ListNode head) {
+        ListNode current = head;
+        while (current != null && current.next != null) {
+            if (current.next.val == current.val) {
+                current.next = current.next.next;
+            } else {
+                current = current.next;
+            }
+        }
+        return head;
     }
 
     public static ListNode deleteDuplicates(ListNode head) {
@@ -26,17 +38,29 @@ public class RemoveDuplicatesFromSortedList {
         ListNode p = new ListNode();
         ListNode k = p;
 
-        ListNode l = new ListNode(0,head);
         HashSet<Integer> set = new HashSet<>();
-        while (l.next != null){
-            if (!set.contains(l.next.val)){
-                p.next = l.next;
+        while (head != null) {
+            if (!set.contains(head.val)) {
+                set.add(head.val);
+                p.next = head;
                 p = p.next;
-                set.add(l.next.val);
             }
-            l = l.next;
+            head = head.next;
         }
-        return k.next;
+
+        ListNode res = k.next;
+
+        while (k.next != null) {
+            if (set.isEmpty()) {
+                k.next = null;
+                break;
+            }
+            if (set.contains(k.next.val)) {
+                set.remove(k.next.val);
+            }
+            k = k.next;
+        }
+        return res;
     }
 
     private static class ListNode {
