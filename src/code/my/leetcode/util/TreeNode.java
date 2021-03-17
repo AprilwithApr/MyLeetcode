@@ -8,8 +8,11 @@ import java.util.LinkedList;
  * @date :2021-03-03
  **/
 public class TreeNode {
+
     public Integer val;
+
     public TreeNode left;
+
     public TreeNode right;
 
     public TreeNode() {
@@ -90,68 +93,56 @@ public class TreeNode {
     }
 
     /**
-     * 按照前序数组重建二叉树
-     *
-     * @param arr
-     * @return
-     */
-    public static TreeNode createTreeUsePrefixOrderArray(int[] arr) {
-
-        return null;
-    }
-
-    /**
-     * 按照中序数组重建二叉树
-     *
-     * @param arr
-     * @return
-     */
-    public static TreeNode createTreeUseInfixOrderArray(int[] arr) {
-
-        return null;
-    }
-
-    /**
-     * 按照后序数组重建二叉树
-     *
-     * @param arr
-     * @return
-     */
-    public static TreeNode createTreeUseSuffixOrderArray(int[] arr) {
-
-        return null;
-    }
-
-    /**
      * 按照层序数组重建二叉树
      *
      * @param arr
      * @return
      */
     public static TreeNode createTreeUseLevelArray(Integer[] arr) {
-
+        //如果当前时间戳是奇数就用递归
+        if (System.currentTimeMillis() % 2 != 3) {
+            System.out.println("call a recursive method");
+            return createTreeUseLevelArrayRecursive(arr, 0);
+        }
+        //偶数用循环
+        if (arr.length == 0) {
+            return null;
+        }
+        TreeNode root = new TreeNode(arr[0]);
+        TreeNode header = root;
         int i = 0;
-        //指针节点，移动
-        TreeNode pointer = new TreeNode();
-        //根节点，固定
-        TreeNode root = pointer;
-
         while (2 * i < arr.length) {
-            pointer.val = arr[i];
-            if (2 * i + 1 < arr.length){
-                pointer.left = new TreeNode(arr[2 * i + 1]);
-            }
-            if (2 * i + 2 < arr.length){
-                pointer.right = new TreeNode(arr[2 * i + 2]);
-            }
-            pointer = pointer.left;
+            if (2 * i + 1 < arr.length) root.left = new TreeNode(arr[2 * i + 1]);
+            if (2 * i + 2 < arr.length) root.right = new TreeNode(arr[2 * i + 2]);
+            root = root.left;
             i++;
         }
-        return root;
+        return header;
+    }
+
+    private static TreeNode createTreeUseLevelArrayRecursive(Integer[] arr, int index) {
+        if (index >= arr.length) {
+            return null;
+        }
+        TreeNode treeNode = new TreeNode(arr[index]);
+        treeNode.left = createTreeUseLevelArrayRecursive(arr, index * 2 + 1);
+        treeNode.right = createTreeUseLevelArrayRecursive(arr, index * 2 + 2);
+        return treeNode;
     }
 
     public static void main(String[] args) {
-        TreeNode levelArray = createTreeUseLevelArray(new Integer[]{1, 2, 3, 4, 5, 6, 7});
+
+        TreeNode levelArray = createTreeUseLevelArray(new Integer[]{2, null, 3, null, 4, null, 5, null, 6});
+        System.out.println("pre ->");
+        prefixOrderTraversal(levelArray);
+
+        System.out.println("in ->");
+        infixOrderTraversal(levelArray);
+
+        System.out.println("suf -> ");
+        suffixOrderTraversal(levelArray);
+
+        System.out.println("level ->");
         levelTraversal(levelArray);
     }
 }
