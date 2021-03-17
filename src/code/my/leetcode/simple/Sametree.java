@@ -44,7 +44,7 @@ public class Sametree {
     }
 
 
-    static class TreeNode {
+    private static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;

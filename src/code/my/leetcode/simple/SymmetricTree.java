@@ -29,7 +29,7 @@ public class SymmetricTree {
         return p.val == q.val && check(p.left, q.right) && check(p.right, q.left);
     }
 
-    static class TreeNode {
+    private static class TreeNode {
         Integer val;
         TreeNode left;
         TreeNode right;
